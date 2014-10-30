@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Videogular Analytics</title>
+
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.min.css">
+</head>
+<body>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Name</th>
+          <th>Content</th>
+        </tr>
+      </thead>
+      <tbody id="event-table">
+
+      <tbody>
+    </table>
+
+    <script>
+
+var eventTable = document.getElementById("event-table");
+
+var socket = new WebSocket("ws://localhost:5000/");
+
+socket.onmessage = function (event) {
+  addEvent(JSON.parse(event.data));
+}
+
+function addEvent(event) {
+  var tr = document.createElement("tr");
+
+  var timeTd = document.createElement("td");
+  timeTd.textContent = event.time;
+  tr.appendChild(timeTd);
+
+  var nameTd = document.createElement("td");
+  nameTd.textContent = event.name;
+  tr.appendChild(nameTd);
+
+  var contentTd = document.createElement("td");
+  contentTd.textContent = event.content;
+  tr.appendChild(contentTd);
+
+  eventTable.appendChild(tr);
+}
+    </script>
+</body>
+</html>
