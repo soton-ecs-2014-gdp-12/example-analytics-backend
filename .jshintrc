@@ -1,0 +1,10 @@
+{
+	"globalstrict": true,
+
+	"bitwise": true,
+	"camelcase": true,
+	"eqeqeq": true,
+	"immed": true,
+	"newcap": true,
+	"undef": true
+}
