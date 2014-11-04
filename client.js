@@ -1,4 +1,4 @@
-
+/* jshint browser: true */
 
 (function() {
 	"use strict";
@@ -21,7 +21,7 @@
 
 		viewingPeriodsTable.innerHTML = "";
 		showPeriods(combinedPeriods);
-	}
+	};
 
 	function eventsToPeriods(events) {
 		var periods = [];
@@ -71,7 +71,7 @@
 
 		var combinedPeriods = [];
 
-		while (periods.length != 0) {
+		while (periods.length !== 0) {
 			var last = periods.pop();
 
 			if (periods.length === 0) {

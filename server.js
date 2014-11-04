@@ -1,7 +1,10 @@
+/* jshint node: true */
+'use strict';
+
 var express = require('express');
 var app = express();
 var expressWs = require('express-ws')(app);
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname));
 
@@ -11,7 +14,7 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.options('/log', function(req, res) {
   res.sendStatus(200);
