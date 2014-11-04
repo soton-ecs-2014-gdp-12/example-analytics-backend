@@ -3,16 +3,6 @@
 (function() {
 	"use strict";
 
-    $('#fullEvents a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
-
-    $('#home a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
-
 	var eventTable = document.getElementById("event-table");
 
 	var viewingPeriodsTable = document.getElementById("periods-table");
