@@ -19,7 +19,7 @@
     <div class="bs-example bs-example-tabs">
         <ul id="myTab" class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Video Display</a></li>
-            <li role="presentation" class=""><a href="#fullEvents" role="tab" id="profile-tab" data-toggle="tab" aria-controls="fullEvents" aria-expanded="false">Full Events Log</a></li>
+            <li role="presentation" class=""><a href="#fullEvents" role="tab" id="profile-tab" data-toggle="tab" aria-controls="fullEvents" aria-expanded="false">Events Log</a></li>
             <li role="presentation">
 				<a id="statistics-tab" href="#statistics" role="tab" data-toggle="tab" aria-controls="statistics" aria-expanded="false">
 					Statistics
@@ -29,35 +29,64 @@
 
         <div id="myTabContent" class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+
+                <h2>Video Statistics Overlay</h2>
+
+                <p>
+                    Here we have overlaid some interesting statics onto the video.
+                </p>
+
                 <p>Video to be placed here</p>
              </div>
             <div role="tabpanel" class="tab-pane fade" id="fullEvents" aria-labelledby="fullEvents-tab">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Name</th>
-                        <th>Content</th>
-                    </tr>
-                    </thead>
-                    <tbody id="event-table">
 
-                    <tbody>
-                </table>
+                <h2>Full Events Log</h2>
 
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Start</th>
-                        <th>End</th>
-                    </tr>
-                    </thead>
-                    <tbody id="periods-table">
+                <p>
+                    This tab lists all of the events as they are received from users using the site.
+                    Only events that are sent after this page has been loaded are currently recorded.
+                </p>
 
-                    <tbody>
-                </table>
+                <p>
+                    This table lists the event name, when it was received and the content of the event.
+
+                    This is a low level view of all the possible events received and demonstrates the range of data that is being collected.
+
+                    This data is used by a number of metrics demonstrated on this example webpage.
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Name</th>
+                            <th>Content</th>
+                        </tr>
+                        </thead>
+                        <tbody id="event-table">
+
+                        <tbody>
+                    </table>
+                </p>
+
+                <p>
+                    This attempts to link together start and stop button presses to see what sections a user is viewing.
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Start</th>
+                            <th>End</th>
+                        </tr>
+                        </thead>
+                        <tbody id="periods-table">
+
+                        <tbody>
+                    </table>
+                </p>
             </div>
 			<div role="tabpanel" class="tab-pane fade" id="statistics" aria-labelledby="statistics-tab">
+
+                <h2>Video Statistics</h2>
+
 				<p>Percentage viewed: <span id="percentViewed"></span>%</p>
 			</div>
         </div>
