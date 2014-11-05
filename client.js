@@ -18,9 +18,12 @@
 		addEvent(parsedEvent);
 
 		var combinedPeriods = combineOverlappingPeriods(eventsToPeriods(events));
+		var VIDEO_LENGTH = 596;  // TODO: actually get this value
+		var percentViewed = sumSecondsViewed(combinedPeriods) / VIDEO_LENGTH * 100;
 
 		viewingPeriodsTable.innerHTML = "";
 		showPeriods(combinedPeriods);
+		displayPercentViewed(percentViewed);
 	};
 
 	function eventsToPeriods(events) {
@@ -100,6 +103,14 @@
 		return combinedPeriods;
 	}
 
+	function sumSecondsViewed(combinedPeriods) {
+		var msSum = 0;
+		for (var i = 0; i < combinedPeriods.length; i++) {
+			msSum += combinedPeriods[i].end - combinedPeriods[i].start;
+		}
+		return msSum / 1000;
+	}
+
 	function addEvent(event) {
 		var tr = document.createElement("tr");
 
@@ -132,5 +143,9 @@
 
 			viewingPeriodsTable.appendChild(tr);
 		});
+	}
+
+	function displayPercentViewed(percentViewed) {
+		document.getElementById('percentViewed').textContent = percentViewed;
 	}
 })();
