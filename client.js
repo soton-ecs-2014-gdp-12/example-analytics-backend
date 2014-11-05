@@ -67,7 +67,8 @@
 		return periods;
 	}
 
-	function combineOverlappingPeriods(periods) {
+	function combineOverlappingPeriods(inputPeriods) {
+		var periods = inputPeriods.slice(0);
 		periods.sort(function(a, b) {
 			return a.end >= b.end;
 		});
