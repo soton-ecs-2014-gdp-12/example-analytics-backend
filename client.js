@@ -119,6 +119,10 @@
 		timeTd.textContent = event.time;
 		tr.appendChild(timeTd);
 
+		var guidTd = document.createElement("td");
+		guidTd.textContent = "none";
+		tr.appendChild(guidTd);
+
 		var nameTd = document.createElement("td");
 		nameTd.textContent = event.name;
 		tr.appendChild(nameTd);
@@ -133,6 +137,10 @@
 	function showPeriods(periods) {
 		periods.forEach(function(period) {
 			var tr = document.createElement("tr");
+
+			var guidTd = document.createElement("td");
+			guidTd.textContent = "none";
+			tr.appendChild(guidTd);
 
 			var startTd = document.createElement("td");
 			startTd.textContent = period.start;
