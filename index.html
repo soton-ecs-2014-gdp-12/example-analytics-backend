@@ -22,7 +22,7 @@
             <li role="presentation" class=""><a href="#fullEvents" role="tab" id="profile-tab" data-toggle="tab" aria-controls="fullEvents" aria-expanded="false">Events Log</a></li>
             <li role="presentation">
 				<a id="statistics-tab" href="#statistics" role="tab" data-toggle="tab" aria-controls="statistics" aria-expanded="false">
-					Statistics
+					Per User Statistics
 				</a>
 			</li>
         </ul>
@@ -85,9 +85,35 @@
             </div>
 			<div role="tabpanel" class="tab-pane fade" id="statistics" aria-labelledby="statistics-tab">
 
-                <h2>Video Statistics</h2>
+                <h2>Per Users Video Statistics</h2>
 
-				<p>Percentage viewed: <span id="percentViewed"></span>%</p>
+                <h3>Percentage Viewed of total video</h3>
+                <p>
+                    This details the total percentage of the view that has been viewed, per user.
+                    Currently only one user is supported.
+                    The time representation is not based on the time spent watching the video, but the period of unique video watched.
+                </p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>GUID</th>
+                                <th>Percentage Viewed</th>
+                                <th>Time representation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>To be implemented</td>
+                                <td><span id="percentViewed">0</span>%</td>
+                                <td>To be implemented</td>
+                            </tr>
+                            <tr>
+                                <td>Average</td>
+                                <td>To be implemented</td>
+                                <td>To be implemented</td>
+                            </tr>
+                        </tbody>
+                    </table>
 			</div>
         </div>
     </div>
