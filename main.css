@@ -12,3 +12,11 @@ p.lead {
     padding-top: 10px;
     padding-left: 10px;
 }
+
+/* d3 graph css */
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}

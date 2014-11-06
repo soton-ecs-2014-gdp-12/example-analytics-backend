@@ -18,13 +18,31 @@
 
     <div class="bs-example bs-example-tabs">
         <ul id="myTab" class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Video Display</a></li>
-            <li role="presentation" class=""><a href="#fullEvents" role="tab" id="profile-tab" data-toggle="tab" aria-controls="fullEvents" aria-expanded="false">Events Log</a></li>
+            <li role="presentation" class="active">
+                <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                    Video Display
+                </a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#fullEvents" role="tab" id="profile-tab" data-toggle="tab" aria-controls="fullEvents" aria-expanded="false">
+                    Events Log
+                </a>
+            </li>
             <li role="presentation">
 				<a id="statistics-tab" href="#statistics" role="tab" data-toggle="tab" aria-controls="statistics" aria-expanded="false">
 					Per User Statistics
 				</a>
 			</li>
+            <li role="presentation">
+                <a id="question-results-tab" href="#results" role="tab" data-toggle="tab" aria-controls="results" aria-expanded="false">
+                    Results
+                </a>
+            </li>
+            <li role="presentation">
+                <a id="results-correlation-tab" href="#results-correlation" role="tab" data-toggle="tab" aria-controls="results-correction" aria-expanded="false">
+                    Results Correlations
+                </a>
+            </li>
         </ul>
 
         <div id="myTabContent" class="tab-content">
@@ -117,13 +135,58 @@
                         </tbody>
                     </table>
 			</div>
+            <div role="tabpanel" class="tab-pane fade" id="results" aria-labelledby="results-tab">
+
+                <h2>Results of questions</h2>
+
+                <h3>Question 1</h3>
+
+                <p>
+                    Results to be added later
+                </p>
+
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="results-correlation" aria-labelledby="results-correlation-tab">
+
+                <h2>Results Correlation</h2>
+
+                <p>
+                    This section shows a number of scatter plots that show the correlation between marks and the time spent on the video.
+                </p>
+
+                <h3>% watched by correct answers</h3>
+
+                <p>
+                    This shows how much of the video watched in percent compared with the score the student achieved.
+                    This does not take into account sections of the video rewatched and therefore the highest value is 100%.
+                </p>
+
+                <div id="svg-scatter"></div>
+
+                <h3>Time watched by correct answers</h3>
+
+                <p>
+                    This shows how much of the video was watched in time compared with the score the student achieved.
+                    This takes into account if the video was rewatched and therefore a value higher than the video length if possible.
+                </p>
+
+                <div></div>
+
+            </div>
+
+
+
+
         </div>
     </div>
 </div>
 
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="client.js"></script>
+<script src="graph-creation.js"></script>
 <script src="bootstrap/js/tab.js"></script>
+
 </body>
 </html>
