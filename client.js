@@ -17,9 +17,12 @@
 
 		addEvent(parsedEvent);
 
-		var combinedPeriods = combineOverlappingPeriods(eventsToPeriods(events));
+		var periods = eventsToPeriods(events);
+		var combinedPeriods = combineOverlappingPeriods(periods);
 		var VIDEO_LENGTH = 596;  // TODO: actually get this value
 		var percentViewed = sumSecondsViewed(combinedPeriods) / VIDEO_LENGTH * 100;
+		var heatMap = makeHeatMap(periods, VIDEO_LENGTH);
+		console.dir(heatMap);
 
 		viewingPeriodsTable.innerHTML = "";
 		showPeriods(combinedPeriods);
@@ -110,6 +113,52 @@
 			msSum += combinedPeriods[i].end - combinedPeriods[i].start;
 		}
 		return msSum / 1000;
+	}
+
+	function makeHeatMap(periods, videoLength) {
+		// Extract start and end times into array
+		var sectionPoints = [0];
+		function addSectionPoint(time) {
+			if (sectionPoints.indexOf(time) === -1) {
+				sectionPoints.push(time);
+			}
+		}
+		for (var i in periods) {
+			var period = periods[i];
+			addSectionPoint(period.start.valueOf());
+			addSectionPoint(period.end.valueOf());
+		}
+		addSectionPoint(videoLength * 1000);
+		sectionPoints.sort();
+
+		// Pair up into sections
+		function pointsToIntervals(points) {
+			var sections = [];
+			for (var i = 0; i < points.length - 1; i++) {
+				sections.push({
+					start: points[i],
+					end: points[i+1],
+				});
+			}
+			return sections;
+		}
+		var sections = pointsToIntervals(sectionPoints);
+
+		// Count periods containing each section
+		function intervalContainsInterval(interval1, interval2) {
+			return interval1.start <= interval2.start && interval2.end <= interval1.end;
+		}
+		for (var iS in sections) {
+			var section = sections[iS];
+			var numPeriods = 0;
+			for (var iP in periods) {
+				if (intervalContainsInterval(periods[iP], section)) {
+					numPeriods++;
+				}
+			}
+			section.frequency = numPeriods;
+		}
+		return sections;
 	}
 
 	function addEvent(event) {
