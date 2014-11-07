@@ -24,7 +24,6 @@
 		var heatMap = makeHeatMap(periods, VIDEO_LENGTH);
 		console.dir(heatMap);
 
-		viewingPeriodsTable.innerHTML = "";
 		showPeriods(combinedPeriods);
 		displayPercentViewed(percentViewed);
 	};
@@ -179,44 +178,28 @@
 		return combineSections(sections);
 	}
 
+	function createTableRow(items) {
+		var tr = document.createElement('tr');
+
+		for (var i in items) {
+			var item = items[i];
+			var td = document.createElement('td');
+			td.textContent = item;
+			tr.appendChild(td);
+		}
+
+		return tr;
+	}
+
 	function addEvent(event) {
-		var tr = document.createElement("tr");
-
-		var timeTd = document.createElement("td");
-		timeTd.textContent = event.time;
-		tr.appendChild(timeTd);
-
-		var guidTd = document.createElement("td");
-		guidTd.textContent = "none";
-		tr.appendChild(guidTd);
-
-		var nameTd = document.createElement("td");
-		nameTd.textContent = event.name;
-		tr.appendChild(nameTd);
-
-		var detailsTd = document.createElement("td");
-		detailsTd.textContent = JSON.stringify(event.details, null, 4);
-		tr.appendChild(detailsTd);
-
+		var tr = createTableRow([event.time, "none", event.name, JSON.stringify(event.details, null, 4)]);
 		eventTable.appendChild(tr);
 	}
 
 	function showPeriods(periods) {
+		viewingPeriodsTable.innerHTML = "";
 		periods.forEach(function(period) {
-			var tr = document.createElement("tr");
-
-			var guidTd = document.createElement("td");
-			guidTd.textContent = "none";
-			tr.appendChild(guidTd);
-
-			var startTd = document.createElement("td");
-			startTd.textContent = period.start;
-			tr.appendChild(startTd);
-
-			var endTd = document.createElement("td");
-			endTd.textContent = period.end;
-			tr.appendChild(endTd);
-
+			var tr = createTableRow(["none", period.start, period.end]);
 			viewingPeriodsTable.appendChild(tr);
 		});
 	}
