@@ -2,23 +2,44 @@
 (function() {
     "use strict";
 
-    createScatter();
+    createScatterTimeWatched();
+    createScatterPercentWatched();
 
-    function createScatter() {
-        //Width and height
-        var w = 500;
-        var h = 300;
-        var padding = 30;
+    function createScatterTimeWatched() {
 
-        var dataset = [];
         var numDataPoints = 20;
         var xRange = 100;
         var yRange = 20;
+        var dataset = [];
         for (var i = 0; i < numDataPoints; i++) {
             var newNumber1 = Math.round(Math.random() * xRange);
             var newNumber2 = Math.round(Math.random() * yRange);
             dataset.push([newNumber1, newNumber2]);
         }
+
+        createScatter("#svg-scatter-time-watched", dataset);
+    }
+
+    function createScatterPercentWatched() {
+
+        var numDataPoints = 20;
+        var xRange = 100;
+        var yRange = 20;
+        var dataset = [];
+        for (var i = 0; i < numDataPoints; i++) {
+            var newNumber1 = Math.round(Math.random() * xRange);
+            var newNumber2 = Math.round(Math.random() * yRange);
+            dataset.push([newNumber1, newNumber2]);
+        }
+
+        createScatter("#svg-scatter-percent-watched", dataset);
+    }
+
+    function createScatter(idName, dataset) {
+        //Width and height
+        var w = 500;
+        var h = 300;
+        var padding = 30;
 
         //Create scale functions
         var xScale = d3.scale.linear()
@@ -42,7 +63,7 @@
             .ticks(5);
 
         //Create SVG element
-        var svg = d3.select("#svg-scatter")
+        var svg = d3.select(idName)
             .insert("svg")
             .attr("width", w)
             .attr("height", h);
@@ -74,4 +95,5 @@
 
 
     }
+
 })();

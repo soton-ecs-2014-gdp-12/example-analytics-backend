@@ -156,10 +156,21 @@
                 <h2>Results of questions</h2>
 
                 <h3>Question 1</h3>
-
                 <p>
                     Results to be added later
                 </p>
+
+                <h4>Answers Graph</h4>
+
+                showing correct
+
+                <h4>Rewatched after incorrect answer</h4>
+
+                <h4>Number of Failed attempts</h4>
+
+                <div id="svg-failed-attempts"></div>
+
+                Average Number of failed attempts: value
 
             </div>
             <div role="tabpanel" class="tab-pane fade" id="results-correlation" aria-labelledby="results-correlation-tab">
@@ -177,7 +188,7 @@
                     This does not take into account sections of the video rewatched and therefore the highest value is 100%.
                 </p>
 
-                <div id="svg-scatter"></div>
+                <div id="svg-scatter-percent-watched"></div>
 
                 <h3>Time watched by correct answers</h3>
 
@@ -186,7 +197,7 @@
                     This takes into account if the video was rewatched and therefore a value higher than the video length if possible.
                 </p>
 
-                <div></div>
+                <div id="svg-scatter-time-watched"></div>
 
             </div>
 
