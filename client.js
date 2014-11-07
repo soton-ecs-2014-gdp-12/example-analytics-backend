@@ -158,7 +158,25 @@
 			}
 			section.frequency = numPeriods;
 		}
-		return sections;
+
+		function combineSections(sections) {
+			if (sections.length === 0) return [];
+			var combinedSections = [];
+			var nextCombinedSection = sections[0];
+			for (var i = 1; i < sections.length; i++) {
+				var section = sections[i];
+				if (section.frequency === nextCombinedSection.frequency) {
+					nextCombinedSection.end = section.end;
+				} else {
+					combinedSections.push(nextCombinedSection);
+					nextCombinedSection = section;
+				}
+			}
+			combinedSections.push(nextCombinedSection);
+			return combinedSections;
+		}
+
+		return combineSections(sections);
 	}
 
 	function addEvent(event) {
