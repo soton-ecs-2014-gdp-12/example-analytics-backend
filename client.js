@@ -6,6 +6,7 @@
 	var eventTable = document.getElementById("event-table");
 
 	var viewingPeriodsTable = document.getElementById("periods-table");
+	var heatMapTable = document.getElementById("heat-map-table");
 
 	var socket = new WebSocket("ws://localhost:5000/");
 
@@ -22,9 +23,9 @@
 		var VIDEO_LENGTH = 596;  // TODO: actually get this value
 		var percentViewed = sumSecondsViewed(combinedPeriods) / VIDEO_LENGTH * 100;
 		var heatMap = makeHeatMap(periods, VIDEO_LENGTH);
-		console.dir(heatMap);
 
 		showPeriods(combinedPeriods);
+		showHeatMap(heatMap);
 		displayPercentViewed(percentViewed);
 	};
 
@@ -201,6 +202,14 @@
 		periods.forEach(function(period) {
 			var tr = createTableRow(["none", period.start, period.end]);
 			viewingPeriodsTable.appendChild(tr);
+		});
+	}
+
+	function showHeatMap(heatMap) {
+		heatMapTable.innerHTML = "";
+		heatMap.forEach(function(section) {
+			var tr = createTableRow([section.start / 1000, section.end / 1000, section.frequency]);
+			heatMapTable.appendChild(tr);
 		});
 	}
 
