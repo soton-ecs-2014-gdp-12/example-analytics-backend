@@ -20,3 +20,7 @@ p.lead {
     stroke: #000;
     shape-rendering: crispEdges;
 }
+
+.bar {
+    fill: steelblue;
+}
