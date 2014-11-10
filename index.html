@@ -1,139 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Videogular Analytics</title>
+	<title>Videogular Analytics</title>
 
-    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="main.css">
 </head>
 <body>
 
 <div class="container">
 
-    <div class="page-header">
-        <h1>Videogular Analytics</h1>
-        <p class="lead">Analytics on the use of the Videogular player created by GDP group 12 - <a href="https://github.com/soton-ecs-2014-gdp-12/example-analytics-backend">github</a></p>
-    </div>
+	<div class="page-header">
+		<h1>Videogular Analytics</h1>
+		<p class="lead">Analytics on the use of the Videogular player created by GDP group 12 - <a href="https://github.com/soton-ecs-2014-gdp-12/example-analytics-backend">github</a></p>
+	</div>
 
-    <div class="bs-example bs-example-tabs">
-        <ul id="myTab" class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
-                    Video Display
-                </a>
-            </li>
-            <li role="presentation" class="">
-                <a href="#fullEvents" role="tab" id="profile-tab" data-toggle="tab" aria-controls="fullEvents" aria-expanded="false">
-                    Events Log
-                </a>
-            </li>
-            <li role="presentation">
+	<div class="bs-example bs-example-tabs">
+		<ul id="myTab" class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active">
+				<a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+					Video Display
+				</a>
+			</li>
+			<li role="presentation" class="">
+				<a href="#fullEvents" role="tab" id="profile-tab" data-toggle="tab" aria-controls="fullEvents" aria-expanded="false">
+					Events Log
+				</a>
+			</li>
+			<li role="presentation">
 				<a id="statistics-tab" href="#statistics" role="tab" data-toggle="tab" aria-controls="statistics" aria-expanded="false">
 					Per User Statistics
 				</a>
 			</li>
-            <li role="presentation">
-                <a id="question-results-tab" href="#results" role="tab" data-toggle="tab" aria-controls="results" aria-expanded="false">
-                    Results
-                </a>
-            </li>
-            <li role="presentation">
-                <a id="results-correlation-tab" href="#results-correlation" role="tab" data-toggle="tab" aria-controls="results-correction" aria-expanded="false">
-                    Results Correlations
-                </a>
-            </li>
-        </ul>
+			<li role="presentation">
+				<a id="question-results-tab" href="#results" role="tab" data-toggle="tab" aria-controls="results" aria-expanded="false">
+					Results
+				</a>
+			</li>
+			<li role="presentation">
+				<a id="results-correlation-tab" href="#results-correlation" role="tab" data-toggle="tab" aria-controls="results-correction" aria-expanded="false">
+					Results Correlations
+				</a>
+			</li>
+		</ul>
 
-        <div id="myTabContent" class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+		<div id="myTabContent" class="tab-content">
+			<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 
-                <h2>Video Statistics Overlay</h2>
+				<h2>Video Statistics Overlay</h2>
 
-                <p>
-                    Here we have overlaid some interesting statics onto the video.
-                </p>
+				<p>
+					Here we have overlaid some interesting statics onto the video.
+				</p>
 
-                <p>Video to be placed here</p>
-             </div>
-            <div role="tabpanel" class="tab-pane fade" id="fullEvents" aria-labelledby="fullEvents-tab">
+				<p>Video to be placed here</p>
+			 </div>
+			<div role="tabpanel" class="tab-pane fade" id="fullEvents" aria-labelledby="fullEvents-tab">
 
-                <h2>Full Events Log</h2>
+				<h2>Full Events Log</h2>
 
-                <p>
-                    This tab lists all of the events as they are received from users using the site.
-                    Only events that are sent after this page has been loaded are currently recorded.
-                </p>
+				<p>
+					This tab lists all of the events as they are received from users using the site.
+					Only events that are sent after this page has been loaded are currently recorded.
+				</p>
 
-                <p>
-                    This table lists the event name, when it was received and the content of the event.
+				<p>
+					This table lists the event name, when it was received and the content of the event.
 
-                    This is a low level view of all the possible events received and demonstrates the range of data that is being collected.
+					This is a low level view of all the possible events received and demonstrates the range of data that is being collected.
 
-                    This data is used by a number of metrics demonstrated on this example webpage.
+					This data is used by a number of metrics demonstrated on this example webpage.
 
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>GUID</th>
-                            <th>Name</th>
-                            <th>Content</th>
-                        </tr>
-                        </thead>
-                        <tbody id="event-table">
+					<table class="table table-striped">
+						<thead>
+						<tr>
+							<th>Time</th>
+							<th>GUID</th>
+							<th>Name</th>
+							<th>Content</th>
+						</tr>
+						</thead>
+						<tbody id="event-table">
 
-                        <tbody>
-                    </table>
-                </p>
+						<tbody>
+					</table>
+				</p>
 
-                <p>
-                    This attempts to link together start and stop button presses to see what sections a user is viewing.
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>GUID</th>
-                            <th>Start</th>
-                            <th>End</th>
-                        </tr>
-                        </thead>
-                        <tbody id="periods-table">
+				<p>
+					This attempts to link together start and stop button presses to see what sections a user is viewing.
+					<table class="table table-striped">
+						<thead>
+						<tr>
+							<th>GUID</th>
+							<th>Start</th>
+							<th>End</th>
+						</tr>
+						</thead>
+						<tbody id="periods-table">
 
-                        <tbody>
-                    </table>
-                </p>
-            </div>
+						<tbody>
+					</table>
+				</p>
+			</div>
 			<div role="tabpanel" class="tab-pane fade" id="statistics" aria-labelledby="statistics-tab">
 
-                <h2>Per Users Video Statistics</h2>
+				<h2>Per Users Video Statistics</h2>
 
-                <h3>Percentage Viewed of total video</h3>
-                <p>
-                    This details the total percentage of the view that has been viewed, per user.
-                    Currently only one user is supported.
-                    The time representation is not based on the time spent watching the video, but the period of unique video watched.
-                </p>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>GUID</th>
-                                <th>Percentage Viewed</th>
-                                <th>Time representation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>To be implemented</td>
-                                <td><span id="percentViewed">0</span>%</td>
-                                <td>To be implemented</td>
-                            </tr>
-                            <tr>
-                                <td>Average</td>
-                                <td>To be implemented</td>
-                                <td>To be implemented</td>
-                            </tr>
-                        </tbody>
-                    </table>
+				<h3>Percentage Viewed of total video</h3>
+				<p>
+					This details the total percentage of the view that has been viewed, per user.
+					Currently only one user is supported.
+					The time representation is not based on the time spent watching the video, but the period of unique video watched.
+				</p>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>GUID</th>
+								<th>Percentage Viewed</th>
+								<th>Time representation</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>To be implemented</td>
+								<td><span id="percentViewed">0</span>%</td>
+								<td>To be implemented</td>
+							</tr>
+							<tr>
+								<td>Average</td>
+								<td>To be implemented</td>
+								<td>To be implemented</td>
+							</tr>
+						</tbody>
+					</table>
 
 				<h3>Number of times each section was viewed</h3>
 				<p>
@@ -151,70 +151,70 @@
 					</tbody>
 				</table>
 			</div>
-            <div role="tabpanel" class="tab-pane fade" id="results" aria-labelledby="results-tab">
+			<div role="tabpanel" class="tab-pane fade" id="results" aria-labelledby="results-tab">
 
-                <h2>Results of questions</h2>
+				<h2>Results of questions</h2>
 
-                <h3>Question 1</h3>
+				<h3>Question 1</h3>
 
-                <h4>Answers given</h4>
+				<h4>Answers given</h4>
 
-                Below is the answers to the question from participants.  The correct answer is "Cheese".
+				Below is the answers to the question from participants.  The correct answer is "Cheese".
 
-                <div id="svg-q1-answers"></div>
+				<div id="svg-q1-answers"></div>
 
-                <h4>Rewatched after incorrect answer</h4>
+				<h4>Rewatched after incorrect answer</h4>
 
-                Each time a user incorrectly answered a question they were given a chance to rewatch the segment or continue.
-                This bar chart demonstrates the choice they made for this question.
+				Each time a user incorrectly answered a question they were given a chance to rewatch the segment or continue.
+				This bar chart demonstrates the choice they made for this question.
 
-                <div id="svg-q1-rewatch"></div>
+				<div id="svg-q1-rewatch"></div>
 
-                <h4>Number of Failed attempts</h4>
+				<h4>Number of Failed attempts</h4>
 
-                This shows how many times a user failed to answer a question correctly.
-                A value of 0 means they correctly answered the question first time.
+				This shows how many times a user failed to answer a question correctly.
+				A value of 0 means they correctly answered the question first time.
 
-                <div id="svg-q1-failed-attempts"></div>
+				<div id="svg-q1-failed-attempts"></div>
 
-                <h3>Question 2</h3>
+				<h3>Question 2</h3>
 
-                As example above
+				As example above
 
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="results-correlation" aria-labelledby="results-correlation-tab">
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="results-correlation" aria-labelledby="results-correlation-tab">
 
-                <h2>Results Correlation</h2>
+				<h2>Results Correlation</h2>
 
-                <p>
-                    This section shows a number of scatter plots that show the correlation between marks and the time spent on the video.
-                </p>
+				<p>
+					This section shows a number of scatter plots that show the correlation between marks and the time spent on the video.
+				</p>
 
-                <h3>% watched by correct answers</h3>
+				<h3>% watched by correct answers</h3>
 
-                <p>
-                    This shows how much of the video watched in percent compared with the score the student achieved.
-                    This does not take into account sections of the video rewatched and therefore the highest value is 100%.
-                </p>
+				<p>
+					This shows how much of the video watched in percent compared with the score the student achieved.
+					This does not take into account sections of the video rewatched and therefore the highest value is 100%.
+				</p>
 
-                <div id="svg-scatter-percent-watched"></div>
+				<div id="svg-scatter-percent-watched"></div>
 
-                <h3>Time watched by correct answers</h3>
+				<h3>Time watched by correct answers</h3>
 
-                <p>
-                    This shows how much of the video was watched in time compared with the score the student achieved.
-                    This takes into account if the video was rewatched and therefore a value higher than the video length if possible.
-                </p>
+				<p>
+					This shows how much of the video was watched in time compared with the score the student achieved.
+					This takes into account if the video was rewatched and therefore a value higher than the video length if possible.
+				</p>
 
-                <div id="svg-scatter-time-watched"></div>
+				<div id="svg-scatter-time-watched"></div>
 
-            </div>
-
-
+			</div>
 
 
-        </div>
-    </div>
+
+
+		</div>
+	</div>
 </div>
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
