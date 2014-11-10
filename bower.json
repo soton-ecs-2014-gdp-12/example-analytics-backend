@@ -1,0 +1,11 @@
+{
+  "name": "example-analytics-backend",
+  "description": "Example of an analytics front end",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "d3": "~3.4.13",
+    "bootstrap": "~3.3.0"
+  }
+}
