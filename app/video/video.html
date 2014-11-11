@@ -1,0 +1,18 @@
+<div ng-controller="VideoCtrl">
+	<videogular vg-theme="config.theme.url">
+		<vg-video vg-src="config.sources"></vg-video>
+		<vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime">
+			<vg-play-pause-button></vg-play-pause-button>
+			<vg-scrubBar>
+				<vg-scrubBarCurrentTime></vg-scrubBarCurrentTime>
+				<vg-heatmaps vg-heatmaps-config="config.plugins.heatmaps" vg-heatmaps-theme="config.plugins.heatmaps.theme.url"></vg-heatmaps>
+			</vg-scrubBar>
+			<vg-timedisplay aria-label="Current Time">{{ currentTime | date:'mm:ss' }}</vg-timedisplay>
+			<vg-volume>
+				<vg-mutebutton></vg-mutebutton>
+				<vg-volumebar></vg-volumebar>
+			</vg-volume>
+			<vg-fullscreenButton></vg-fullscreenButton>
+		</vg-controls>
+	</videogular>
+</div>
