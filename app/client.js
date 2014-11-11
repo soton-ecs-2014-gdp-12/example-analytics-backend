@@ -8,7 +8,7 @@
 	var viewingPeriodsTable = document.getElementById("periods-table");
 	var heatMapTable = document.getElementById("heat-map-table");
 
-	var socket = new WebSocket("ws://localhost:5000/");
+	var socket = new WebSocket("ws://localhost:5001/");
 
 	var events = [];
 
