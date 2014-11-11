@@ -6,7 +6,7 @@ var app = express();
 var expressWs = require('express-ws')(app);
 var bodyParser = require('body-parser');
 
-app.use(express.static(__dirname));
+app.use('/', express.static('app'));
 
 app.all('*', function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -36,3 +36,5 @@ app.post('/log', function(req, res) {
 });
 
 app.listen(5001);
+
+console.log("listening on http://localhost:5001/");
