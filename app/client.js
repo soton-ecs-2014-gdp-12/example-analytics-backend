@@ -8,7 +8,7 @@ angular.module('uk.ac.soton.ecs.analytics.example', [
 	'com.2fdevs.videogular',
 	'com.2fdevs.videogular.plugins.controls',
 	'uk.ac.soton.ecs.analytics.example.video',
-//	'uk.ac.soton.ecs.videogular.plugins.heatmaps',
+	'uk.ac.soton.ecs.videogular.plugins.heatmaps',
 	'uk.ac.soton.ecs.analytics.example.version'
 ])
 .config(['$routeProvider', function($routeProvider) {

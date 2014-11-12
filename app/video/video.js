@@ -21,9 +21,9 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 		plugins: {
 			heatmaps: {
 				theme: {
-					url: "heatmaps.css",
+					url: "bower_components/videogular-heatmap/heatmaps.css",
 				},
-/*
+
 		sections: [
 			{
 				start: '1970-01-01T00:00:00.000Z',
@@ -46,7 +46,7 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 				frequency : '11'
 			},
 		], 
-*/
+
 				colours: [
 					{
 						upto: '2',
