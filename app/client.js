@@ -11,6 +11,10 @@ angular.module('uk.ac.soton.ecs.analytics.example', [
 //	'uk.ac.soton.ecs.videogular.plugins.heatmaps',
 	'uk.ac.soton.ecs.analytics.example.version'
 ])
+.config(['$routeProvider', function($routeProvider) {
+$routeProvider.otherwise({redirectTo: '/video'});
+}]);
+
 
 	var eventTable = document.getElementById("event-table");
 

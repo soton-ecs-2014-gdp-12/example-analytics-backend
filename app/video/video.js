@@ -23,28 +23,30 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 				theme: {
 					url: "heatmaps.css",
 				},
-				sections: [
-					{
-						start: '1970-01-01T00:00:00.000Z',
-						end: '1970-01-01T00:00:02.000Z',
-						frequency : '4'
-					},
-					{
-						start: '1970-01-01T00:00:02.000Z',
-						end: '1970-01-01T00:00:03.030Z',
-						frequency : '2'
-					},
-					{
-						start: '1970-01-01T00:02:02.000Z',
-						end: '1970-01-01T00:02:13.030Z',
-						frequency : '1'
-					},
-					{
-						start: '1970-01-01T00:02:20.000Z',
-						end: '1970-01-01T00:02:23.530Z',
-						frequency : '11'
-					},
-				],
+/*
+		sections: [
+			{
+				start: '1970-01-01T00:00:00.000Z',
+				end: '1970-01-01T00:00:02.000Z',
+				frequency : '4'
+			},
+			{
+				start: '1970-01-01T00:00:02.000Z',
+				end: '1970-01-01T00:00:03.030Z',
+				frequency : '2'
+			},
+			{
+				start: '1970-01-01T00:02:02.000Z',
+				end: '1970-01-01T00:02:13.030Z',
+				frequency : '1'
+			},
+			{
+				start: '1970-01-01T00:02:20.000Z',
+				end: '1970-01-01T00:02:23.530Z',
+				frequency : '11'
+			},
+		], 
+*/
 				colours: [
 					{
 						upto: '2',
@@ -74,4 +76,20 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 			},
 		}
 	};
+/*
+	function addHeatmap(frequencyList) {
+		if (typeof $scope.heatmaps !== 'undefined') {
+			$scope.heatmaps.sections = $scope.heatmaps.sections || [];
+			for (var i in frequencyList) {
+				$scope.heatmaps.sections.push(
+					{ 
+						start: frequencyList[i].start,
+						end: frequencyList[i].end,
+						frequency: frequencyList[i].frequency
+					}
+				);
+			}
+		}
+	}
+*/
 });
