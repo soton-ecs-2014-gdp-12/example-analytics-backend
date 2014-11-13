@@ -3,18 +3,17 @@
 (function() {
 	"use strict";
 
-angular.module('uk.ac.soton.ecs.analytics.example', [
-	'ngRoute',
-	'com.2fdevs.videogular',
-	'com.2fdevs.videogular.plugins.controls',
-	'uk.ac.soton.ecs.analytics.example.video',
-	'uk.ac.soton.ecs.videogular.plugins.heatmaps',
-	'uk.ac.soton.ecs.analytics.example.version'
-])
-.config(['$routeProvider', function($routeProvider) {
-$routeProvider.otherwise({redirectTo: '/video'});
-}]);
-
+	angular.module('uk.ac.soton.ecs.analytics.example', [
+		'ngRoute',
+		'com.2fdevs.videogular',
+		'com.2fdevs.videogular.plugins.controls',
+		'uk.ac.soton.ecs.analytics.example.video',
+		'uk.ac.soton.ecs.videogular.plugins.heatmaps',
+		'uk.ac.soton.ecs.analytics.example.version'
+	])
+	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider.otherwise({redirectTo: '/video'});
+	}]);
 
 	var eventTable = document.getElementById("event-table");
 
@@ -28,7 +27,6 @@ $routeProvider.otherwise({redirectTo: '/video'});
 	socket.onmessage = function (event) {
 		var parsedEvent = JSON.parse(event.data);
 		events.push(parsedEvent);
-
 		addEvent(parsedEvent);
 
 		var periods = eventsToPeriods(events);
@@ -39,12 +37,17 @@ $routeProvider.otherwise({redirectTo: '/video'});
 
 		showPeriods(combinedPeriods);
 		showHeatMap(heatMap);
+		showHeatmapOnVideo(heatMap);
 		displayPercentViewed(percentViewed);
 	};
 
+	function showHeatmapOnVideo(frequencyList){
+		angular.element(document.getElementById('videoView')).scope().addSections(frequencyList);
+		console.log("Sections:",angular.element(document.getElementById('videoView')).scope().config.plugins.heatmaps.sections);	
+	}
+
 	function eventsToPeriods(events) {
 		var periods = [];
-
 		var i = 0;
 		var event;
 		var currentPeriod;

@@ -13,7 +13,7 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 		autoHide: false,
 		autoHideTime: 3000,
 		sources: [
-			{src: $sce.trustAsResourceUrl("caesar-cipher.mp4"), type: "video/mp4"},
+			{src: $sce.trustAsResourceUrl("video.ogg"), type: "video/ogg"},
 		],
 		theme: {
 			url: "video/videogular.css"
@@ -23,30 +23,29 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 				theme: {
 					url: "bower_components/videogular-heatmap/heatmaps.css",
 				},
-
-		sections: [
-			{
-				start: '1970-01-01T00:00:00.000Z',
-				end: '1970-01-01T00:00:02.000Z',
-				frequency : '4'
-			},
-			{
-				start: '1970-01-01T00:00:02.000Z',
-				end: '1970-01-01T00:00:03.030Z',
-				frequency : '2'
-			},
-			{
-				start: '1970-01-01T00:02:02.000Z',
-				end: '1970-01-01T00:02:13.030Z',
-				frequency : '1'
-			},
-			{
-				start: '1970-01-01T00:02:20.000Z',
-				end: '1970-01-01T00:02:23.530Z',
-				frequency : '11'
-			},
-		], 
-
+/*
+				sections: [
+					{
+						start: '1970-01-01T00:00:00.000Z',
+						end: '1970-01-01T00:00:02.000Z',
+						frequency : '4'
+					},
+					{
+						start: '1970-01-01T00:00:02.000Z',
+						end: '1970-01-01T00:00:03.030Z',
+						frequency : '2'
+					},
+					{
+						start: '1970-01-01T00:00:03.030Z',
+						end: '1970-01-01T00:00:03.050Z',
+						frequency : '1'
+					},
+					{
+						start: '1970-01-01T00:00:03.050Z',
+						end: '1970-01-01T00:00:03.900Z',
+						frequency : '11'
+					},
+				], */
 				colours: [
 					{
 						upto: '2',
@@ -76,20 +75,22 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 			},
 		}
 	};
-/*
-	function addHeatmap(frequencyList) {
-		if (typeof $scope.heatmaps !== 'undefined') {
-			$scope.heatmaps.sections = $scope.heatmaps.sections || [];
+
+	$scope.addSections=function(frequencyList){
+		if (typeof $scope.config.plugins.heatmaps !== 'undefined') {
+			$scope.config.plugins.heatmaps.sections = $scope.config.plugins.heatmaps.sections || [];
 			for (var i in frequencyList) {
-				$scope.heatmaps.sections.push(
+				$scope.$apply(
+					$scope.config.plugins.heatmaps.sections.push(
 					{ 
 						start: frequencyList[i].start,
 						end: frequencyList[i].end,
 						frequency: frequencyList[i].frequency
 					}
-				);
+					)	
+				);	
 			}
-		}
-	}
-*/
+		}	
+	};
+
 });
