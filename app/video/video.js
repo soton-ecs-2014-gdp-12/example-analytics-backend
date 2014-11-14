@@ -2,22 +2,22 @@
 'use strict';
 
 angular.module('uk.ac.soton.ecs.analytics.example.video', [
-		'ngRoute',
-		'com.2fdevs.videogular',
-		'com.2fdevs.videogular.plugins.controls',
-		'uk.ac.soton.ecs.analytics.example.video',
-		'uk.ac.soton.ecs.videogular.plugins.heatmaps',
-		'uk.ac.soton.ecs.analytics.example.version'
+	'ngRoute',
+	'com.2fdevs.videogular',
+	'com.2fdevs.videogular.plugins.controls',
+	'uk.ac.soton.ecs.analytics.example.video',
+	'uk.ac.soton.ecs.videogular.plugins.heatmaps',
+	'uk.ac.soton.ecs.analytics.example.version'
 ])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
-    templateUrl: 'video/video.html',
-    controller: 'VideoCtrl'
-  }).when('/', {
-    redirectTo: '/home'
-  });
-}]) 
+	$routeProvider.when('/home', {
+		templateUrl: 'video/video.html',
+		controller: 'VideoCtrl'
+	}).when('/', {
+		redirectTo: '/home'
+	});
+}])
 
 .controller('VideoCtrl', function($scope, $sce, $route) {
 	$scope.config = {
@@ -72,12 +72,12 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 			$scope.config.plugins.heatmaps.sections = $scope.config.plugins.heatmaps.sections || [];
 			for (var i in frequencyList) {
 					$scope.config.plugins.heatmaps.sections.push(
-					{ 
+					{
 						start: frequencyList[i].start,
 						end: frequencyList[i].end,
 						frequency: frequencyList[i].frequency
 					}
-					)	;	
+				);
 			}
 		}
 	};
