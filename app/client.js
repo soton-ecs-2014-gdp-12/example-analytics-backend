@@ -31,10 +31,10 @@
 
 	function showHeatmapOnVideo(frequencyList){
 		var videoView = document.getElementById('videoView');
-		var videoElementScope = angular.element(videoView).scope();
+		var videoElementScope = angular.element(videoView).scope().$$childHead; 
+		console.log(videoElementScope);
 		videoElementScope.addSections(frequencyList);
-		console.log("Sections:", videoElementScope.config.plugins.heatmaps.sections);
-
+		videoElementScope.$apply();
 	}
 
 	function eventsToPeriods(events) {
