@@ -30,9 +30,11 @@
 	};
 
 	function showHeatmapOnVideo(frequencyList){
-		(angular.element(document.getElementById('videoView')).route()).butt();
-		//angular.element(document.getElementById('videoView')).scope().addSections(frequencyList);
-		console.log("Sections:",angular.element(document.getElementById('videoView')).route());	
+		var videoView = document.getElementById('videoView');
+		var videoElementScope = angular.element(videoView).scope();
+		videoElementScope.addSections(frequencyList);
+		console.log("Sections:", videoElementScope.config.plugins.heatmaps.sections);
+
 	}
 
 	function eventsToPeriods(events) {
