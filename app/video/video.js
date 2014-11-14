@@ -33,6 +33,9 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 				},
 				colours: [
 					{
+						upto: '1',
+					},
+					{
 						upto: '2',
 						colour: 'indigo',
 					},
