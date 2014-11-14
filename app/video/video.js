@@ -68,16 +68,18 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 	};
 
 	$scope.addSections=function(frequencyList){
-		if (typeof $scope.config.plugins.heatmaps !== 'undefined') {
-			$scope.config.plugins.heatmaps.sections = $scope.config.plugins.heatmaps.sections || [];
+		var heatmaps = $scope.config.plugins.heatmaps
+
+		if (typeof(heatmaps) !== 'undefined') {
+
+			heatmaps.sections = heatmaps.sections || [];
+
 			for (var i in frequencyList) {
-					$scope.config.plugins.heatmaps.sections.push(
-					{
-						start: frequencyList[i].start,
-						end: frequencyList[i].end,
-						frequency: frequencyList[i].frequency
-					}
-				);
+				$scope.config.plugins.heatmaps.sections.push({
+					start: frequencyList[i].start,
+					end: frequencyList[i].end,
+					frequency: frequencyList[i].frequency
+				});
 			}
 		}
 	};
