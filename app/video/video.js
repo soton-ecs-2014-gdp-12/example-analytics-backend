@@ -10,9 +10,11 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 ])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/', {
+  $routeProvider.when('/home', {
     templateUrl: 'video/video.html',
     controller: 'VideoCtrl'
+  }).when('/', {
+    redirectTo: '/home'
   });
 }]) 
 
