@@ -3,18 +3,6 @@
 (function() {
 	"use strict";
 
-	angular.module('uk.ac.soton.ecs.analytics.example', [
-		'ngRoute',
-		'com.2fdevs.videogular',
-		'com.2fdevs.videogular.plugins.controls',
-		'uk.ac.soton.ecs.analytics.example.video',
-		'uk.ac.soton.ecs.videogular.plugins.heatmaps',
-		'uk.ac.soton.ecs.analytics.example.version'
-	])
-	.config(['$routeProvider', function($routeProvider) {
-		$routeProvider.otherwise({redirectTo: '/video'});
-	}]);
-
 	var eventTable = document.getElementById("event-table");
 
 	var viewingPeriodsTable = document.getElementById("periods-table");
@@ -42,8 +30,9 @@
 	};
 
 	function showHeatmapOnVideo(frequencyList){
-		angular.element(document.getElementById('videoView')).scope().addSections(frequencyList);
-		console.log("Sections:",angular.element(document.getElementById('videoView')).scope().config.plugins.heatmaps.sections);	
+		(angular.element(document.getElementById('videoView')).route()).butt();
+		//angular.element(document.getElementById('videoView')).scope().addSections(frequencyList);
+		console.log("Sections:",angular.element(document.getElementById('videoView')).route());	
 	}
 
 	function eventsToPeriods(events) {
