@@ -1,14 +1,22 @@
 'use strict';
 
-angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
+angular.module('uk.ac.soton.ecs.analytics.example.video', [
+		'ngRoute',
+		'com.2fdevs.videogular',
+		'com.2fdevs.videogular.plugins.controls',
+		'uk.ac.soton.ecs.analytics.example.video',
+		'uk.ac.soton.ecs.videogular.plugins.heatmaps',
+		'uk.ac.soton.ecs.analytics.example.version'
+])
+
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/video', {
+  $routeProvider.when('/', {
     templateUrl: 'video/video.html',
     controller: 'VideoCtrl'
   });
-}])
+}]) 
 
-.controller('VideoCtrl', function($scope, $sce) {
+.controller('VideoCtrl', function($scope, $sce, $route) {
 	$scope.config = {
 		autoHide: false,
 		autoHideTime: 3000,
@@ -23,29 +31,6 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 				theme: {
 					url: "bower_components/videogular-heatmap/heatmaps.css",
 				},
-/*
-				sections: [
-					{
-						start: '1970-01-01T00:00:00.000Z',
-						end: '1970-01-01T00:00:02.000Z',
-						frequency : '4'
-					},
-					{
-						start: '1970-01-01T00:00:02.000Z',
-						end: '1970-01-01T00:00:03.030Z',
-						frequency : '2'
-					},
-					{
-						start: '1970-01-01T00:00:03.030Z',
-						end: '1970-01-01T00:00:03.050Z',
-						frequency : '1'
-					},
-					{
-						start: '1970-01-01T00:00:03.050Z',
-						end: '1970-01-01T00:00:03.900Z',
-						frequency : '11'
-					},
-				], */
 				colours: [
 					{
 						upto: '2',
@@ -80,17 +65,15 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', ['ngRoute'])
 		if (typeof $scope.config.plugins.heatmaps !== 'undefined') {
 			$scope.config.plugins.heatmaps.sections = $scope.config.plugins.heatmaps.sections || [];
 			for (var i in frequencyList) {
-				$scope.$apply(
 					$scope.config.plugins.heatmaps.sections.push(
 					{ 
 						start: frequencyList[i].start,
 						end: frequencyList[i].end,
 						frequency: frequencyList[i].frequency
 					}
-					)	
-				);	
+					)	;	
 			}
-		}	
+		}
 	};
 
 });

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="uk.ac.soton.ecs.analytics.example" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="uk.ac.soton.ecs.analytics.example" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="uk.ac.soton.ecs.analytics.example" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="uk.ac.soton.ecs.analytics.example" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="uk.ac.soton.ecs.analytics.example.video" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="uk.ac.soton.ecs.analytics.example.video" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="uk.ac.soton.ecs.analytics.example.video" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="uk.ac.soton.ecs.analytics.example.video" class="no-js"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,7 +61,7 @@
 				<p>
 					Here we have overlaid some interesting statics onto the video.
 				</p>
-				<div id="videoView" ng-controller="VideoCtrl">
+				<div ng-controller="VideoCtrl" id="videoView">
 					<div ng-view></div>
 				</div>
 			 </div>
@@ -235,7 +235,6 @@
 <script src="bower_components/videogular/videogular.min.js"></script>
 <script src="bower_components/videogular-controls/controls.js"></script>
 <script src="bower_components/videogular-heatmap/heatmaps.js"></script>
-<script src="app.js"></script>
 <script src="video/video.js"></script>
 <script src="client.js"></script>
 <script src="graph-creation.js"></script>
