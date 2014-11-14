@@ -32,7 +32,6 @@
 	function showHeatmapOnVideo(frequencyList){
 		var videoView = document.getElementById('videoView');
 		var videoElementScope = angular.element(videoView).scope().$$childHead; 
-		console.log(videoElementScope);
 		videoElementScope.addSections(frequencyList);
 		videoElementScope.$apply();
 	}
