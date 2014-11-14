@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 angular.module('uk.ac.soton.ecs.analytics.example.video', [
@@ -82,3 +83,4 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 	};
 
 });
+})();
