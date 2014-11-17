@@ -24,7 +24,7 @@
 		<p class="lead">Analytics on the use of the Videogular player created by GDP group 12 - <a href="https://github.com/soton-ecs-2014-gdp-12/example-analytics-backend">github</a></p>
 	</div>
 
-	<div class="bs-example bs-example-tabs">
+	<div class="bs-example bs-example-tabs" ng-controller="VideoCtrl">
 		<ul id="myTab" class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
 				<a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
@@ -61,7 +61,7 @@
 				<p>
 					Here we have overlaid some interesting statics onto the video.
 				</p>
-				<div ng-controller="VideoCtrl" id="videoView">
+				<div id="videoView">
 					<div ng-view></div>
 				</div>
 			 </div>

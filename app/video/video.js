@@ -19,7 +19,7 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 	});
 }])
 
-.controller('VideoCtrl', function($scope, $sce, $route) {
+.controller('VideoCtrl', function($scope, $sce) {
 	$scope.config = {
 		autoHide: false,
 		autoHideTime: 3000,
@@ -68,7 +68,7 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 	};
 
 	$scope.addSections=function(frequencyList){
-		var heatmaps = $scope.config.plugins.heatmaps
+		var heatmaps = $scope.config.plugins.heatmaps;
 
 		if (typeof(heatmaps) !== 'undefined') {
 

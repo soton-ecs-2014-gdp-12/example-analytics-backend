@@ -16,7 +16,11 @@
 		var parsedEvent = JSON.parse(event.data);
 		events.push(parsedEvent);
 		addEvent(parsedEvent);
+		updateEvents();
+	};
 
+	function updateEvents(){
+		console.log("updating");
 		var periods = eventsToPeriods(events);
 		var combinedPeriods = combineOverlappingPeriods(periods);
 		var VIDEO_LENGTH = 596;  // TODO: actually get this value
