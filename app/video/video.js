@@ -24,7 +24,7 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 		autoHide: false,
 		autoHideTime: 3000,
 		sources: [
-			{src: $sce.trustAsResourceUrl("video.ogg"), type: "video/ogg"},
+			{src: $sce.trustAsResourceUrl("caesar-cipher.mp4"), type: "video/mp4"},
 		],
 		theme: {
 			url: "video/videogular.css"
