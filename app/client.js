@@ -7,6 +7,7 @@
 
 	var viewingPeriodsTable = document.getElementById("periods-table");
 	var heatMapTable = document.getElementById("heat-map-table");
+	var viewPercentageTable = document.getElementById("percentage-viewed-table");
 
 	var socket = new WebSocket("ws://localhost:5001/");
 
@@ -21,17 +22,49 @@
 
 	function updateEvents(){
 		console.log("updating");
-		var periods = eventsToPeriods(events);
-		var combinedPeriods = combineOverlappingPeriods(periods);
 		var VIDEO_LENGTH = 596;  // TODO: actually get this value
-		var percentViewed = sumSecondsViewed(combinedPeriods) / VIDEO_LENGTH * 100;
-		var heatMap = makeHeatMap(periods, VIDEO_LENGTH);
 
-		showPeriods(combinedPeriods);
+		var eventsByUser = splitEventsByUser(events);
+		var combinedPeriodsByUser = {};
+		var percentViewedByUser = {};
+		var heatMapByUser = {};
+
+		for(var uuid in eventsByUser) {
+			var periods = eventsToPeriods(eventsByUser[uuid]);
+
+			var combinedPeriods = combineOverlappingPeriods(periods);
+			combinedPeriodsByUser[uuid] = combinedPeriods;
+
+			var percentViewed = sumSecondsViewed(combinedPeriods) / VIDEO_LENGTH * 100
+			percentViewedByUser[uuid] = percentViewed;
+
+			var heatMap = makeHeatMap(periods, VIDEO_LENGTH);
+			heatMapByUser[uuid] = heatMap;
+		}
+
+		displayPercentViewed(percentViewedByUser);
+		showPeriods(combinedPeriodsByUser);
+
+		var periods = eventsToPeriods(events);
+		var heatMap = makeHeatMap(periods, VIDEO_LENGTH);
 		showHeatMap(heatMap);
 		showHeatmapOnVideo(heatMap);
-		displayPercentViewed(percentViewed);
 	};
+
+	function splitEventsByUser(eventList) {
+		var groupedEvents = {};
+
+		for(var i = 0; i < eventList.length; i++) {
+			if(events[i].uuid in groupedEvents) {
+				groupedEvents[events[i].uuid].push(eventList[i]);
+			}else{
+				groupedEvents[events[i].uuid] = [eventList[i]];
+			}
+		}
+
+		return groupedEvents;
+	}
+
 
 	function showHeatmapOnVideo(frequencyList){
 		var videoView = document.getElementById('videoView');
@@ -207,12 +240,14 @@
 		eventTable.appendChild(tr);
 	}
 
-	function showPeriods(periods) {
+	function showPeriods(periodsByUser) {
 		viewingPeriodsTable.innerHTML = "";
-		periods.forEach(function(period) {
-			var tr = createTableRow(["none", period.start, period.end]);
-			viewingPeriodsTable.appendChild(tr);
-		});
+		for(var uuid in periodsByUser) {
+			periodsByUser[uuid].forEach(function(period) {
+				var tr = createTableRow([uuid, period.start, period.end]);
+				viewingPeriodsTable.appendChild(tr);
+			});
+		}
 	}
 
 	function showHeatMap(heatMap) {
@@ -223,7 +258,20 @@
 		});
 	}
 
-	function displayPercentViewed(percentViewed) {
-		document.getElementById('percentViewed').textContent = percentViewed;
+	function displayPercentViewed(percentViewedByUser) {
+		viewPercentageTable.innerHTML = "";
+		var averagePercentage = 0;
+		var keys = 0;
+		for(var uuid in percentViewedByUser) {
+			keys++;
+			var tr = createTableRow([uuid, percentViewedByUser[uuid], percentViewedByUser[uuid]]);
+			viewPercentageTable.appendChild(tr);
+			averagePercentage += percentViewedByUser[uuid];
+		}
+
+		averagePercentage /= keys;
+
+		var tr = createTableRow(['Average', averagePercentage, averagePercentage]);
+		viewPercentageTable.appendChild(tr);
 	}
 })();
