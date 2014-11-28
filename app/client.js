@@ -244,7 +244,7 @@
 		viewingPeriodsTable.innerHTML = "";
 		for(var uuid in periodsByUser) {
 			periodsByUser[uuid].forEach(function(period) {
-				var tr = createTableRow([uuid, period.start, period.end]);
+				var tr = createTableRow([uuid, period.start.valueOf() / 1000, period.end.valueOf() / 1000]);
 				viewingPeriodsTable.appendChild(tr);
 			});
 		}
