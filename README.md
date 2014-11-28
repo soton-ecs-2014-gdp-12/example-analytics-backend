@@ -3,12 +3,20 @@ example-analytics-backend
 
 This is an example backend for the videogular-analytics plugin.
 
-Usage
+
+Setup
 -----
 
-You can run this instance by installing npm requirements `npm install` and then running the server `npm start`
+`npm install` can be run to install the npm dependencies.
 
-By also running the analytics branch of videogular-questions-example you can receive the events raised by this.
+The [Videogular Heatmap](https://github.com/soton-ecs-2014-gdp-12/videogular-heatmap) module specified in the `bower.json` file have not been released yet.
+ To get them, clone their repositories and run `bower link` in the root of each repository. Then, in the `example-analytics-backend` directory, tell Bower to use your local copy:
+
+```sh
+$ bower link videogular-heatmap
+```
+
+Important: This will not work without doing this.
 
 Configuring an Apache webserver to run this application
 =======================================================
