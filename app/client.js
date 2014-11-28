@@ -250,7 +250,7 @@
 		viewingPeriodsTable.innerHTML = "";
 		for(var uuid in periodsByUser) {
 			periodsByUser[uuid].forEach(function(period) {
-				var tr = createTableRow([uuid, period.start.valueOf() / 1000, period.end.valueOf() / 1000]);
+				var tr = createTableRow([uuid, (period.start.valueOf() / 1000).toFixed(2).toString() + " seconds", (period.end.valueOf() / 1000).toFixed(2).toString() + " seconds"]);
 				viewingPeriodsTable.appendChild(tr);
 			});
 		}
@@ -259,7 +259,7 @@
 	function showHeatMap(heatMap) {
 		heatMapTable.innerHTML = "";
 		heatMap.forEach(function(section) {
-			var tr = createTableRow([section.start / 1000, section.end / 1000, section.frequency]);
+			var tr = createTableRow([(section.start / 1000).toFixed(2).toString() + " seconds", (section.end / 1000).toFixed(2).toString() + " seconds", section.frequency]);
 			heatMapTable.appendChild(tr);
 		});
 	}
@@ -270,14 +270,14 @@
 		var keys = 0;
 		for(var uuid in percentViewedByUser) {
 			keys++;
-			var tr = createTableRow([uuid, percentViewedByUser[uuid].toFixed(2).toString() + "%", ((percentViewedByUser[uuid] * getVideoLength()) / 100).toFixed(2)] );
+			var tr = createTableRow([uuid, percentViewedByUser[uuid].toFixed(2).toString() + "%", ((percentViewedByUser[uuid] * getVideoLength()) / 100).toFixed(2).toString() + " seconds"] );
 			viewPercentageTable.appendChild(tr);
 			averagePercentage += percentViewedByUser[uuid];
 		}
 
 		averagePercentage /= keys;
 
-		var tr = createTableRow(['Average', averagePercentage.toFixed(2).toString() + "%", ((averagePercentage * getVideoLength()) / 100).toFixed(2)]);
+		var tr = createTableRow(['Average', averagePercentage.toFixed(2).toString() + "%", ((averagePercentage * getVideoLength()) / 100).toFixed(2).toString() + " seconds"]);
 		viewPercentageTable.appendChild(tr);
 	}
 })();
