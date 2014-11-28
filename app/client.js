@@ -203,7 +203,7 @@
 	}
 
 	function addEvent(event) {
-		var tr = createTableRow([event.time, "none", event.name, JSON.stringify(event.details, null, 4)]);
+		var tr = createTableRow([event.time, event.uuid, event.name, JSON.stringify(event.details, null, 4)]);
 		eventTable.appendChild(tr);
 	}
 
