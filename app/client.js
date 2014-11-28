@@ -264,14 +264,14 @@
 		var keys = 0;
 		for(var uuid in percentViewedByUser) {
 			keys++;
-			var tr = createTableRow([uuid, percentViewedByUser[uuid], percentViewedByUser[uuid]]);
+			var tr = createTableRow([uuid, percentViewedByUser[uuid].toFixed(2).toString() + "%", percentViewedByUser[uuid].toFixed(2).toString() + "%"]);
 			viewPercentageTable.appendChild(tr);
 			averagePercentage += percentViewedByUser[uuid];
 		}
 
 		averagePercentage /= keys;
 
-		var tr = createTableRow(['Average', averagePercentage, averagePercentage]);
+		var tr = createTableRow(['Average', averagePercentage.toFixed(2).toString() + "%", averagePercentage.toFixed(2).toString() + "%"]);
 		viewPercentageTable.appendChild(tr);
 	}
 })();
