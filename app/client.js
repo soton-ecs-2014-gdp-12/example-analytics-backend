@@ -123,13 +123,16 @@
 
 			event = events[i];
 
-			while (event.name !== "play") {
+			while (i < events.length && event.name !== "play") {
 				i++;
 				event = events[i];
 			}
 
-			currentPeriod.start = new Date(event.details.time);
+			if (i >= events.length) {
+				break;
+			}
 
+			currentPeriod.start = new Date(event.details.time);
 			i++;
 
 			if (i >= events.length) {
@@ -138,9 +141,13 @@
 
 			event = events[i];
 
-			while (event.name !== "pause" && event.name !== "stop") {
+			while (i < events.length && event.name !== "pause" && event.name !== "stop") {
 				i++;
 				event = events[i];
+			}
+
+			if (i >= events.length) {
+				break;
 			}
 
 			currentPeriod.end = new Date(event.details.time);
