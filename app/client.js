@@ -12,6 +12,8 @@
 	var socket = new WebSocket("ws://localhost:5001/");
 
 	var events = [];
+	var questionData = getQuestionData();
+	console.log(questionData);
 
 	socket.onmessage = function (event) {
 		var parsedEvent = JSON.parse(event.data);
