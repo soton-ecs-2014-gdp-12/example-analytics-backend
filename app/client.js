@@ -32,6 +32,7 @@
 		var combinedPeriodsByUser = {};
 		var percentViewedByUser = {};
 		var heatMapByUser = {};
+		var answersByUser = {};
 
 		for(var uuid in eventsByUser) {
 			var periods = eventsToPeriods(eventsByUser[uuid]);
@@ -44,6 +45,9 @@
 
 			var heatMap = makeHeatMap(periods, getVideoLength());
 			heatMapByUser[uuid] = heatMap;
+
+			var questionAnswers = getQuestionAnswers(eventsByUser[uuid]);
+			answersByUser[uuid] = questionAnswers;
 		}
 
 		displayPercentViewed(percentViewedByUser);
@@ -76,6 +80,34 @@
 		if(videoElementScope !== null) {
 			videoElementScope.addSections(frequencyList);
 			videoElementScope.$apply();
+		}
+	}
+
+	function getQuestionAnswers(events) {
+		var i = 0;
+		var answers = {};
+		while(i < events.length) {
+			var questionId = undefined;
+
+			while(i < events.length && events[i].name !== 'show_question') {
+				i++;
+			}
+
+			if(i < events.length && events[i].name === 'show_question') {
+				questionId = events[i].details.showQuestion.id;
+
+				while(i < events.length && events[i].name !== 'submitted_question') {
+					i++;
+				}
+
+				if(i < events.length && events[i].name === 'submitted_question') {
+					answers[questionId] = events[i].details.result;
+				}else{
+					return answers;
+				}
+			}else{
+				return answers;
+			}
 		}
 	}
 
