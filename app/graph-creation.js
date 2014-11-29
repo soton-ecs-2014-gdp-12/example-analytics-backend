@@ -1,4 +1,5 @@
 /*global d3:false */
+'use strict';
 
 function createScatter(idName, dataset) {
 	//Width and height
@@ -110,7 +111,6 @@ function createBar(idName, dataset) {
 }
 
 (function() {
-	"use strict";
 
 	createScatterTimeWatched();
 	createScatterPercentWatched();

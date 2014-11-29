@@ -1,4 +1,8 @@
 /* jshint browser: true */
+/*global angular:true */
+/*global createScatter:true */
+/*global createBar:true */
+/*global getQuestionData:true */
 
 (function() {
 	"use strict";
@@ -47,7 +51,7 @@
 			var combinedPeriods = combineOverlappingPeriods(periods);
 			combinedPeriodsByUser[uuid] = combinedPeriods;
 
-			var percentViewed = sumSecondsViewed(combinedPeriods) / getVideoLength() * 100
+			var percentViewed = sumSecondsViewed(combinedPeriods) / getVideoLength() * 100;
 			percentViewedByUser[uuid] = percentViewed;
 
 			var heatMap = makeHeatMap(periods, getVideoLength());
@@ -62,11 +66,11 @@
 		createQuestionGraphs(questionData, answersByUser);
 		createTimeViewedScatter(questionData, answersByUser);
 
-		var periods = eventsToPeriods(events);
-		var heatMap = makeHeatMap(periods, getVideoLength());
-		showHeatMap(heatMap);
-		showHeatmapOnVideo(heatMap);
-	};
+		var periodsAllEvents = eventsToPeriods(events);
+		var heatMapAllEvents = makeHeatMap(periodsAllEvents, getVideoLength());
+		showHeatMap(heatMapAllEvents);
+		showHeatmapOnVideo(heatMapAllEvents);
+	}
 
 	function splitEventsByUser(eventList) {
 		var groupedEvents = {};
@@ -96,7 +100,7 @@
 		var i = 0;
 		var answers = {};
 		while(i < events.length) {
-			var questionId = undefined;
+			var questionId;
 
 			while(i < events.length && events[i].name !== 'show_question') {
 				i++;
@@ -328,8 +332,8 @@
 
 		averagePercentage /= keys;
 
-		var tr = createTableRow(['Average', averagePercentage.toFixed(2).toString() + "%", ((averagePercentage * getVideoLength()) / 100).toFixed(2).toString() + " seconds"]);
-		viewPercentageTable.appendChild(tr);
+		var finalTr = createTableRow(['Average', averagePercentage.toFixed(2).toString() + "%", ((averagePercentage * getVideoLength()) / 100).toFixed(2).toString() + " seconds"]);
+		viewPercentageTable.appendChild(finalTr);
 	}
 
 	function createQuestionGraphs(questionData, answersByUser) {
@@ -347,7 +351,7 @@
 				questionDiv.appendChild(title);
 				title.innerHTML = "Question: " + question.question;
 
-				if(question.correctAnswer != undefined) {
+				if(question.correctAnswer !== undefined) {
 					var correctAnswerDiv = document.createElement('div');
 					questionDiv.appendChild(correctAnswerDiv);
 					correctAnswerDiv.innerHTML = "The correct answer was " + question.correctAnswer;
@@ -366,6 +370,8 @@
 
 	function getAllResults(questionData, answersByUser) {
 		var dataset = {};
+		var questionId;
+		var answer;
 
 		for(var questionSet in questionData) {
 			for(var item in questionData[questionSet].items) {
@@ -383,16 +389,16 @@
 		}
 
 		for(var uuid in answersByUser) {
-			for(var questionId in answersByUser[uuid]) {
-				var answer = answersByUser[uuid][questionId].answer;
+			for(questionId in answersByUser[uuid]) {
+				answer = answersByUser[uuid][questionId].answer;
 				dataset[questionId][answer]++;
 			}
 		}
 
 		var barChartDataset = {};
-		for(var questionId in dataset) {
+		for(questionId in dataset) {
 			barChartDataset[questionId] = [];
-			for(var answer in dataset[questionId]) {
+			for(answer in dataset[questionId]) {
 				barChartDataset[questionId].push({'name' : answer, 'value': dataset[questionId][answer]});
 			}
 		}
@@ -423,9 +429,9 @@
 		for(var uuid in answersByUser) {
 			for(var questionId in answersByUser[uuid]) {
 				var answer = answersByUser[uuid][questionId];
-				var correct = (answer.answer == correctAnswers[questionId] ? 0 : 1);
+				var correct = (answer.answer === correctAnswers[questionId] ? 0 : 1);
 
-				dataset.push([answer.timeTaken, correct])
+				dataset.push([answer.timeTaken, correct]);
 			}
 		}
 
