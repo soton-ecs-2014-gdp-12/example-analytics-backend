@@ -9,6 +9,7 @@
 	var heatMapTable = document.getElementById("heat-map-table");
 	var viewPercentageTable = document.getElementById("percentage-viewed-table");
 	var questionDetails = document.getElementById("question-details");
+	var questionTime = document.getElementById("question-time");
 
 	var socket = new WebSocket("ws://localhost:5001/");
 
@@ -17,6 +18,7 @@
 
 	//does the init and creates the barebones questions
 	createQuestionGraphs(questionData, {});
+	createTimeViewedScatter(questionData, {});
 
 	socket.onmessage = function (event) {
 		var parsedEvent = JSON.parse(event.data);
@@ -58,6 +60,7 @@
 		displayPercentViewed(percentViewedByUser);
 		showPeriods(combinedPeriodsByUser);
 		createQuestionGraphs(questionData, answersByUser);
+		createTimeViewedScatter(questionData, answersByUser);
 
 		var periods = eventsToPeriods(events);
 		var heatMap = makeHeatMap(periods, getVideoLength());
@@ -100,14 +103,17 @@
 			}
 
 			if(i < events.length && events[i].name === 'show_question') {
-				questionId = events[i].details.showQuestion.id;
+				var showEvent = events[i];
+				questionId = showEvent.details.showQuestion.id;
 
 				while(i < events.length && events[i].name !== 'submitted_question') {
 					i++;
 				}
 
 				if(i < events.length && events[i].name === 'submitted_question') {
-					answers[questionId] = events[i].details.result;
+					console.log(events[i]);
+					console.log(showEvent);
+					answers[questionId] = {'answer' : events[i].details.result, 'timeTaken': (new Date(events[i].time) - new Date(showEvent.time)) / 1000};
 				}else{
 					return answers;
 				}
@@ -341,6 +347,12 @@
 				questionDiv.appendChild(title);
 				title.innerHTML = "Question: " + question.question;
 
+				if(question.correctAnswer != undefined) {
+					var correctAnswerDiv = document.createElement('div');
+					questionDiv.appendChild(correctAnswerDiv);
+					correctAnswerDiv.innerHTML = "The correct answer was " + question.correctAnswer;
+				}
+
 				var barChart = document.createElement('div');
 				questionDiv.appendChild(barChart);
 				barChart.setAttribute('id', '#chart-' + question.id);
@@ -372,7 +384,7 @@
 
 		for(var uuid in answersByUser) {
 			for(var questionId in answersByUser[uuid]) {
-				var answer = answersByUser[uuid][questionId];
+				var answer = answersByUser[uuid][questionId].answer;
 				dataset[questionId][answer]++;
 			}
 		}
@@ -388,6 +400,38 @@
 		return barChartDataset;
 	}
 
+	function createTimeViewedScatter(questionData, answersByUser) {
+		questionTime.innerHTML = '';
 
+		var correctAnswers = {};
+		for(var questionSet in questionData) {
+			for (var item in questionData[questionSet].items) {
+				var question = questionData[questionSet].items[item];
+				correctAnswers[question.id] = question.correctAnswer;
+			}
+		}
+
+		var heading = document.createElement('h3');
+		questionTime.appendChild(heading);
+		heading.innerHTML = 'Correlation between time taken and correctly answered questions';
+
+		var scatter = document.createElement('div');
+		questionTime.appendChild(scatter);
+		scatter.setAttribute('id', '#scatter-time');
+
+		var dataset = [];
+		for(var uuid in answersByUser) {
+			for(var questionId in answersByUser[uuid]) {
+				var answer = answersByUser[uuid][questionId];
+				var correct = (answer.answer == correctAnswers[questionId] ? 0 : 1);
+
+				dataset.push([answer.timeTaken, correct])
+			}
+		}
+
+		createScatter(scatter, dataset);
+
+		console.log(answersByUser);
+	}
 
 })();
