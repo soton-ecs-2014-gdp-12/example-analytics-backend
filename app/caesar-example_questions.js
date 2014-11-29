@@ -65,10 +65,6 @@ function getQuestionData() {
 					}
 				],
 				correctAnswer: "800 years"
-			},
-			{
-				id: "second-question-results",
-				questionId : "time",
 			}
 		]
 	}
