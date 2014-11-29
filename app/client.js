@@ -8,12 +8,15 @@
 	var viewingPeriodsTable = document.getElementById("periods-table");
 	var heatMapTable = document.getElementById("heat-map-table");
 	var viewPercentageTable = document.getElementById("percentage-viewed-table");
+	var questionDetails = document.getElementById("question-details");
 
 	var socket = new WebSocket("ws://localhost:5001/");
 
 	var events = [];
 	var questionData = getQuestionData();
-	console.log(questionData);
+
+	//does the init and creates the barebones questions
+	createQuestionGraphs(questionData, {});
 
 	socket.onmessage = function (event) {
 		var parsedEvent = JSON.parse(event.data);
@@ -54,6 +57,7 @@
 
 		displayPercentViewed(percentViewedByUser);
 		showPeriods(combinedPeriodsByUser);
+		createQuestionGraphs(questionData, answersByUser);
 
 		var periods = eventsToPeriods(events);
 		var heatMap = makeHeatMap(periods, getVideoLength());
@@ -321,4 +325,69 @@
 		var tr = createTableRow(['Average', averagePercentage.toFixed(2).toString() + "%", ((averagePercentage * getVideoLength()) / 100).toFixed(2).toString() + " seconds"]);
 		viewPercentageTable.appendChild(tr);
 	}
+
+	function createQuestionGraphs(questionData, answersByUser) {
+		questionDetails.innerHTML = "";
+		var dataset = getAllResults(questionData, answersByUser);
+
+		for(var questionSet in questionData) {
+			for(var item in questionData[questionSet].items) {
+				var question = questionData[questionSet].items[item];
+
+				var questionDiv = document.createElement('div');
+				questionDetails.appendChild(questionDiv);
+
+				var title = document.createElement('h3');
+				questionDiv.appendChild(title);
+				title.innerHTML = "Question: " + question.question;
+
+				var barChart = document.createElement('div');
+				questionDiv.appendChild(barChart);
+				barChart.setAttribute('id', '#chart-' + question.id);
+
+				createBar(barChart, dataset[question.id]);
+
+			}
+		}
+
+	}
+
+	function getAllResults(questionData, answersByUser) {
+		var dataset = {};
+
+		for(var questionSet in questionData) {
+			for(var item in questionData[questionSet].items) {
+				var question = questionData[questionSet].items[item];
+
+				if(!(question.id in dataset)) {
+					dataset[question.id] = {};
+				}
+				for(var possibleAnswer in question.options) {
+					if(!(possibleAnswer in dataset[question.id])) {
+						dataset[question.id][question.options[possibleAnswer].name] = 0;
+					}
+				}
+			}
+		}
+
+		for(var uuid in answersByUser) {
+			for(var questionId in answersByUser[uuid]) {
+				var answer = answersByUser[uuid][questionId];
+				dataset[questionId][answer]++;
+			}
+		}
+
+		var barChartDataset = {};
+		for(var questionId in dataset) {
+			barChartDataset[questionId] = [];
+			for(var answer in dataset[questionId]) {
+				barChartDataset[questionId].push({'name' : answer, 'value': dataset[questionId][answer]});
+			}
+		}
+
+		return barChartDataset;
+	}
+
+
+
 })();
