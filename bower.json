@@ -7,13 +7,14 @@
   "dependencies": {
     "d3": "~3.4.13",
     "bootstrap": "~3.3.0",
-	"angular": "1.2.x",
+    "angular": "1.2.x",
     "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
- 	"videogular": "~0.6.1",
+    "videogular": "~0.6.1",
     "videogular-controls": "~0.6.1",
-    "videogular-themes-default": "~0.6.1"
+    "videogular-themes-default": "~0.6.1",
+    "videogular-heatmap": "~0.1.0"
   }
 }
