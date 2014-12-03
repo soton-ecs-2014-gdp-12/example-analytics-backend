@@ -114,9 +114,9 @@ function createBar(idName, dataset) {
 
 	createScatterTimeWatched();
 	createScatterPercentWatched();
-	createBarFailedAttempts();
-	createBarAnswers();
-	createBarRewatch();
+	//createBarFailedAttempts();
+	//createBarAnswers();
+	//createBarRewatch();
 
 	function createScatterTimeWatched() {
 
