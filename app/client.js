@@ -22,7 +22,7 @@
 
 	//does the init and creates the barebones questions
 	createQuestionGraphs(questionData, {});
-	createTimeViewedScatter(questionData, {});
+	//createTimeViewedScatter(questionData, {});
 
 	socket.onmessage = function (event) {
 		var parsedEvent = JSON.parse(event.data);
@@ -74,7 +74,7 @@
 		displayPercentViewed(percentViewedByUser);
 		showPeriods(combinedPeriodsByUser);
 		createQuestionGraphs(questionData, answersByUser);
-		createTimeViewedScatter(questionData, answersByUser);
+		//createTimeViewedScatter(questionData, answersByUser);
 
 		var periodsAllEvents = eventsToPeriods(events);
 		var heatMapAllEvents = makeHeatMap(periodsAllEvents, getVideoLength());
