@@ -9,11 +9,11 @@ function createScatter(idName, dataset) {
 
 	//Create scale functions
 	var xScale = d3.scale.linear()
-		.domain([0, 100])
+		.domain([0, d3.max(dataset, function(d) { return d[0]; })])
 		.range([padding, w - padding * 2]);
 
 	var yScale = d3.scale.linear()
-		.domain([0, 20])
+		.domain([0, d3.max(dataset, function(d) { return d[1]; })])
 		.range([h - padding, padding]);
 
 	//Define X axis
