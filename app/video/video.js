@@ -33,6 +33,7 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 			heatmaps: {
 				theme: {
 					url: "bower_components/videogular-heatmap/heatmaps.css",
+					textshow: true,
 				},
 				colours: [
 					{
@@ -72,7 +73,7 @@ angular.module('uk.ac.soton.ecs.analytics.example.video', [
 
 		if (typeof(heatmaps) !== 'undefined') {
 
-			heatmaps.sections = heatmaps.sections || [];
+			heatmaps.sections = [];
 
 			for (var i in frequencyList) {
 				$scope.config.plugins.heatmaps.sections.push({
