@@ -27,7 +27,7 @@
 	socket.onmessage = function (event) {
 		var parsedEvent = JSON.parse(event.data);
 		events.push(parsedEvent);
-		console.log(events);
+		//console.log(events);
 		addEvent(parsedEvent);
 		updateEvents();
 	};
@@ -116,8 +116,8 @@
 				}
 
 				if(i < events.length && events[i].name === 'submitted_question') {
-					console.log(events[i]);
-					console.log(showEvent);
+					//console.log(events[i]);
+					//console.log(showEvent);
 					answers[questionId] = {'answer' : events[i].details.result, 'timeTaken': (new Date(events[i].time) - new Date(showEvent.time)) / 1000};
 				}else{
 					return answers;
