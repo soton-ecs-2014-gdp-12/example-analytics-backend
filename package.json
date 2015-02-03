@@ -25,6 +25,7 @@
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
     "start": "node server.js",
+    "start-with-output": "node server.js --output example_output.json",
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
